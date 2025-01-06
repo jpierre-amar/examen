@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+//namespace App\Controllers;
 
-class HomeController extends Controller
+class HomeController
 {
     public function index()
     {
-        return $this->view('home/index');
+        include 'views/home/index.php';
     }
 } 
