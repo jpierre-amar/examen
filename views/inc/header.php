@@ -11,12 +11,4 @@
 </head>
 <body>
 <header>
-    <nav>
-        <ul>
-            <li><a href="/dashboard">Tableau de bord</a></li>
-            <li><a href="/babies">Mes bébés</a></li>
-            <li><a href="/activities">Activités</a></li>
-            <li><a href="/logout">Déconnexion</a></li>
-        </ul>
-    </nav>
 </header>
