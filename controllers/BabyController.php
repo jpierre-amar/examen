@@ -4,16 +4,13 @@ class BabyController
 {
     private $babyModel;
 
-    public function __construct($babyModel)
-    {
-        $this->babyModel = $babyModel;
-    }
 
     // Affiche la liste des bébés
     public function index()
     {
+        $this->babyModel = new Baby();
         $babies = $this->babyModel->findAllByUser($_SESSION['user_id']);
-        include __DIR__ . '/../views/baby/index.php';
+        include "views/baby/index.php";
     }
 
     // Affiche le formulaire pour ajouter un bébé
