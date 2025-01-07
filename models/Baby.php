@@ -2,10 +2,10 @@
 // Modèle Baby - Gère les interactions avec la table des bébés
 class Baby
 {
-    private $db;
+    private PDO $db;
 
     // Constructeur - Injecte l'instance de connexion à la base de données
-    public function __construct($db)
+    public function __construct(PDO $db)
     {
         $this->db = $db;
     }

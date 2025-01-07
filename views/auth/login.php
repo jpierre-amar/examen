@@ -3,7 +3,7 @@
 <main class="flex items-center my-16 justify-center bg-gray-100">
     <div class="container max-w-md p-6 bg-white shadow-lg border border-gray-300 rounded-lg">
         <h1 class="text-3xl font-bold text-center mb-4">Connexion</h1>
-        <form method="POST" action="index.php?ctrl=Auth&action=register" class="space-y-4">
+        <form method="POST" action="index.php?ctrl=Auth&action=login" class="space-y-4">
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" name="email" id="email" required

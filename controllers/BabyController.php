@@ -8,7 +8,9 @@ class BabyController
     // Affiche la liste des bébés
     public function index()
     {
-        $this->babyModel = new Baby();
+        require_once 'config/Database.php';
+        $pdo = Database::getConnection();
+        $this->babyModel = new Baby($pdo);
         $babies = $this->babyModel->findAllByUser($_SESSION['user_id']);
         include "views/baby/index.php";
     }

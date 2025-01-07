@@ -2,7 +2,7 @@
 // Modèle User - Gère les interactions avec la table des utilisateurs dans la base de données
 class User
 {
-    private $db;
+    private PDO $db;
     // Constructeur - Injecte l'instance de connexion à la base de données
     public function __construct(PDO $db)
     {
@@ -19,10 +19,9 @@ class User
     }
 
     // Crée un nouvel utilisateur
-    public function create(string $email, string $password)
+    public function create(string $email, string $password): bool
     {
         $query = $this->db->prepare('INSERT INTO users (email, password) VALUES (:email, :password)');
-        $query->bindParam(':name', $name, PDO::PARAM_STR);
         $query->bindParam(':email', $email, PDO::PARAM_STR);
         $query->bindParam(':password', $password, PDO::PARAM_STR);
         return $query->execute();
@@ -41,7 +40,7 @@ class User
     {
         // Préparer la requête pour récupérer l'utilisateur par son mail
         $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
-        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->bindParam(':email', $email,PDO::PARAM_STR);
         $query->execute();
 
         // Récupéré l'utilisateur

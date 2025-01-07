@@ -1,5 +1,5 @@
 <?php
-// Inclusion du fichier d'en-tête HTML partagé
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

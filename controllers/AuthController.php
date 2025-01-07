@@ -2,7 +2,7 @@
 
 class AuthController extends Controller
 {
-    public function showLoginForm()
+    public function showLoginForm(): null
     {
         return $this->view('views/auth/login');
     }
@@ -46,6 +46,11 @@ class AuthController extends Controller
 
         if ($success) {
             $_SESSION['success'] = "Inscription réussie !";
+            $user = $userModel->findByEmail($email);
+            $_SESSION['user'] = [
+                'id' => $user['id'],
+                'email' => $user['email']
+            ];
             header("Location: index.php?ctrl=Home&action=index");
         } else {
             $_SESSION['error'] = "Une erreur est survenue. Veuillez réessayer.";
@@ -63,8 +68,10 @@ class AuthController extends Controller
             header("Location: index.php?ctrl=Auth&action=showLoginForm");
             exit;
         }
-        require_once 'app/models/User.php';
-        $userModel = new User();
+        require_once 'models/User.php';
+        require_once 'config/Database.php';
+        $pdo = Database::getConnection();
+        $userModel = new User($pdo);
         if ($userModel->emailExists($email)) {
             if ($userModel->login($email, $password)) {
                 header("Location: index.php?ctrl=Home&action=index");
@@ -77,9 +84,8 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(){
+    public function logout(): void
+    {
         session_destroy();
     }
-
-
 }

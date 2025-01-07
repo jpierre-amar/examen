@@ -48,7 +48,7 @@ try {
         throw new Exception("Le contrôleur '$ctrl' n'existe pas.");
     }
     if (isset($_GET['action']) && $_GET['action'] == 'validateUser') {
-        include 'views/index.php';
+        include 'index.php';
     }
 } catch (Exception $e) {
     throw new Exception('Erreur : ' . $e->getMessage());
