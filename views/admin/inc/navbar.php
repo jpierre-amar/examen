@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between py-3">
             <!-- Logo ou Titre -->
-            <a href="index.php?ctrl=Home&action=index" class="text-2xl font-bold">Baby Tracker</a>
+            <a href="index.php?ctrl=AdminHome&action=index" class="text-2xl font-bold">Baby Tracker - Administration</a>
 
             <!-- Bouton pour mobile -->
             <button class="block md:hidden text-white focus:outline-none" id="navbar-toggle">
@@ -14,24 +14,14 @@
             <!-- Liens de navigation -->
             <div class="hidden md:flex flex-1 items-center" id="navbar-links">
                 <div class="flex flex-1 space-x-4 ml-10">
-                    <a href="index.php?ctrl=Home&action=index" class="block px-2 py-1 hover:text-gray-300">Accueil</a>
-                    <a href="index.php?ctrl=Baby&action=index" class="block px-2 py-1 hover:text-gray-300">Mes bébés</a>
-                   <!-- <a href="/statistics" class="block px-2 py-1 hover:text-gray-300">Statistiques</a> -->
-                    <a href="/settings" class="block px-2 py-1 hover:text-gray-300">Paramètres</a>
+                    <a href="index.php?ctrl=AdminHome&action=index" class="block px-2 py-1 hover:text-gray-300">Accueil</a>
+                    <a href="index.php?ctrl=AdminUsers&action=index" class="block px-2 py-1 hover:text-gray-300">Utilisateurs</a>
+                    <a href="index.php?ctrl=AdminUsers&action=index&role=admin" class="block px-2 py-1 hover:text-gray-300">Administrateurs</a>
                 </div>
 
                 <div class="ml-auto">
-                    <?php if (!isset($_SESSION['user_email'])): ?>
-                        <a href="index.php?ctrl=Auth&action=showLoginForm" class="block px-2 py-1 hover:text-gray-300">Se connecter / S'inscrire</a>
-                    <?php else: ?>
-                        <a href="index.php?ctrl=Auth&action=logout" class="block px-2 py-1 hover:text-gray-300">Se déconnecter</a>
-                    <?php endif; ?>
-                </div>
-
-                <div class="ml-auto">
-                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-                        <a href="index.php?ctrl=AdminHome&action=index" class="block px-2 py-1 hover:text-gray-300">Administration</a>
-                    <?php endif; ?>
+                    <a href="index.php?ctrl=Home&action=index" class="block px-2 py-1 hover:text-gray-300">Retour à Baby tracker</a>
+                    <a href="index.php?ctrl=Auth&action=logout" class="block px-2 py-1 hover:text-gray-300">Se déconnecter</a>
                 </div>
             </div>
         </div>

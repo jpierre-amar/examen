@@ -1,3 +1,5 @@
+<?php require 'views/inc/header.php'; ?>
+<?php include 'views/inc/navbar.php'; ?>
 
 <h1>Ajouter une Activité</h1>
 <form action="index.php?ctrl=Activity&action=store&baby_id=<?= $_GET['baby_id']?>" method="POST">
@@ -16,3 +18,5 @@
 
     <button type="submit">Ajouter</button>
 </form>
+
+<?php require 'views/inc/footer.php'; ?>

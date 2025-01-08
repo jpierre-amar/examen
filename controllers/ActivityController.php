@@ -1,4 +1,5 @@
 <?php
+
 // Contrôleur ActivityController - Gère les activités d'un bébé
 class ActivityController
 {
@@ -12,7 +13,7 @@ class ActivityController
     // Affiche la liste des activités
     public function index($babyId)
     {
-    dump($babyId, 'babyId');
+        dump($babyId, 'babyId');
         if (empty($babyId)) {
             $_SESSION['error'] = "ID de bébé invalide.";
             header('Location: index.php?ctrl=Baby&action=index');
@@ -39,8 +40,7 @@ class ActivityController
         $notes = $_POST['notes'];
         $this->activityModel->create($babyId, $type, $date, $notes);
 
-        var_dump($babyId);
-        header('Location: index.php?ctrl=Activity&action=index&baby_id=' . $babyId);
+        header('Location: index.php?ctrl=Activity&action=index&id=' . $babyId);
         exit;
     }
 
