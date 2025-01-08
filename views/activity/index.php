@@ -14,9 +14,9 @@
     <ul>
         <?php foreach ($activities as $activity): ?>
             <li>
-                <p>Type: <?= htmlspecialchars($activity['type']) ?></p>
-                <p>Date: <?= htmlspecialchars($activity['date']) ?></p>
-                <p>Notes: <?= htmlspecialchars($activity['notes']) ?></p>
+                <p>Type: <?= ($activity['type']) ?></p>
+                <p>Date: <?= ($activity['date']) ?></p>
+                <p>Notes: <?= ($activity['notes']) ?></p>
             </li>
         <?php endforeach; ?>
     </ul>

@@ -4,22 +4,30 @@ class ActivityController
 {
     private $activityModel;
 
-    public function __construct($activityModel)
+    public function __construct()
     {
-        $this->activityModel = $activityModel;
+
+
     }
 
     // Affiche la liste des activités
     public function index($babyId)
     {
+        $db = Database::getConnection();
+        $this->activityModel = new Activity($db);
+        if (empty($babyId)) {
+            $_SESSION['error'] = "ID de bébé invalide.";
+            header('Location: index.php?ctrl=Baby&action=index');
+            exit;
+        }
         $activities = $this->activityModel->findAllByBaby($babyId);
-        include __DIR__ . '/../views/activity/index.php';
+        include 'views/activity/index.php';
     }
 
     // Affiche le formulaire pour ajouter une activité
     public function create()
     {
-        include __DIR__ . '/../views/activity/create.php';
+        include 'views/activity/create.php';
     }
 
     // Enregistre une nouvelle activité
@@ -33,7 +41,7 @@ class ActivityController
     public function edit($id)
     {
         $activity = $this->activityModel->findById($id);
-        include __DIR__ . '/../views/activity/edit.php';
+        include 'views/activity/edit.php';
     }
 
     // Met à jour une activité existante

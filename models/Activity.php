@@ -13,7 +13,7 @@ class Activity
     // Récupère toutes les activités associées à un bébé
     public function findAllByBaby($babyId)
     {
-        $query = $this->db->prepare('SELECT * FROM activities WHERE baby_id = :baby_id ORDER BY date DESC');
+        $query = $this->db->prepare('SELECT * FROM activities WHERE baby_id = :baby_id ORDER BY created_at DESC');
         $query->bindParam(':baby_id', $babyId, PDO::PARAM_INT);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);

@@ -30,12 +30,20 @@ class Baby
     }
 
     // Met à jour les informations d'un bébé
-    public function update($id, $name, $birthDate)
+    public function update($data)
     {
         $query = $this->db->prepare('UPDATE babies SET name = :name, birth_date = :birth_date WHERE id = :id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->bindParam(':name', $name, PDO::PARAM_STR);
-        $query->bindParam(':birth_date', $birthDate, PDO::PARAM_STR);
+        $query->bindParam(':id', $data['id'], PDO::PARAM_INT);
+        $query->bindParam(':name', $data['name'], PDO::PARAM_STR);
+        $query->bindParam(':birth_date', $data['birth_date'], PDO::PARAM_STR);
         return $query->execute();
+    }
+
+    public function findById($id)
+    {
+        $query = $this->db->prepare('SELECT * FROM babies WHERE id = :id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 }

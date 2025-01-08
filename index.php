@@ -2,6 +2,7 @@
 
 $currentpage = 'Baby Tracker';
 require_once 'config/autoloader.php';
+require 'config/Database.php';
 require_once 'config/config.php';
 require 'views/inc/header.php';
 include 'views/inc/navbar.php';
