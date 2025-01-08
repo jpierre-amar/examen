@@ -10,8 +10,8 @@
     <ul>
         <?php foreach ($activities as $activity): ?>
             <li class="mb-4 p-4 border rounded-lg shadow">
-                <p><strong>Type:</strong> <?= htmlspecialchars($activity['type']) ?></p>
-                <p><strong>Date:</strong> <?= htmlspecialchars($activity['date']) ?></p>
+                <p><strong>Type:</strong> <?= htmlspecialchars($activity['activity_type_name']) ?></p>
+                <p><strong>Date:</strong> <?= htmlspecialchars($activity['created_at']) ?></p>
                 <p><strong>Notes:</strong> <?= htmlspecialchars($activity['notes']) ?></p>
             </li>
         <?php endforeach; ?>

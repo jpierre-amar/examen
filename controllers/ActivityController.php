@@ -6,20 +6,19 @@ class ActivityController
 
     public function __construct()
     {
-
-
+        $this->activityModel = new Activity();
     }
 
     // Affiche la liste des activités
     public function index($babyId)
     {
-        $db = Database::getConnection();
-        $this->activityModel = new Activity($db);
+    dump($babyId, 'babyId');
         if (empty($babyId)) {
             $_SESSION['error'] = "ID de bébé invalide.";
             header('Location: index.php?ctrl=Baby&action=index');
             exit;
         }
+
         $activities = $this->activityModel->findAllByBaby($babyId);
         include 'views/activity/index.php';
     }
@@ -27,15 +26,20 @@ class ActivityController
     // Affiche le formulaire pour ajouter une activité
     public function create()
     {
+
         include 'views/activity/create.php';
     }
 
     // Enregistre une nouvelle activité
-    public function store($babyId, $type, $date, $notes)
+    public function store()
     {
         $babyId = $_GET['baby_id'];
+        $type = $_POST['type'];
+        $date = $_POST['date'];
+        $notes = $_POST['notes'];
         $this->activityModel->create($babyId, $type, $date, $notes);
 
+        var_dump($babyId);
         header('Location: index.php?ctrl=Activity&action=index&baby_id=' . $babyId);
         exit;
     }

@@ -7,14 +7,20 @@ class Activity
     // Constructeur - Injecte l'instance de connexion à la base de données
     public function __construct()
     {
-        $db = Database::getConnection();
-        $this->activityModel = new Activity($db);
+        $this->db = Database::getConnection();
+
     }
 
     // Récupère toutes les activités associées à un bébé
     public function findAllByBaby($babyId)
     {
-        $query = $this->db->prepare('SELECT * FROM activities WHERE baby_id = :baby_id ORDER BY created_at DESC');
+        $query = $this->db->prepare(
+            'SELECT activities.*, activity_types.name AS activity_type_name
+         FROM activities
+         JOIN activity_types ON activities.activity_type_id = activity_types.id
+         WHERE activities.baby_id = :baby_id
+         ORDER BY activities.created_at DESC'
+        );
         $query->bindParam(':baby_id', $babyId, PDO::PARAM_INT);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);

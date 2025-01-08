@@ -1,3 +1,21 @@
+<?php
+// Fonction pour calculer l'âge
+function calculateAge($birthDate) {
+    $birthDateTime = new DateTime($birthDate);
+    $currentDateTime = new DateTime();
+
+    $interval = $currentDateTime->diff($birthDateTime);
+    $years = $interval->y;
+    $months = $interval->m;
+
+    if ($years > 0) {
+        return "$years an(s) et $months mois";
+    } else {
+        return "$months mois";
+    }
+}
+?>
+
 <div class="container mx-auto p-6">
     <h1 class="text-3xl font-bold mb-6 text-gray-800">Liste des Bébés</h1>
     <a href="index.php?ctrl=Baby&action=create"
@@ -22,7 +40,10 @@
 
                         <!-- Contenu de la carte -->
                         <h2 class="text-lg font-bold text-gray-700 mb-2"><?= ($baby['name']) ?></h2>
-                        <p class="text-gray-500">Date de naissance : <?= ($baby['birth_date']) ?></p>
+                        <p class="text-gray-500">
+                            Date de naissance : <?= ($baby['birth_date']) ?>
+                            (<?= calculateAge($baby['birth_date']) ?>)
+                        </p>
                     </div>
                 <?php endforeach; ?>
             </div>
