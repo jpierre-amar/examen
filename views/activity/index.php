@@ -1,3 +1,6 @@
+<?php require 'views/inc/header.php'; ?>
+<?php include 'views/inc/navbar.php'; ?>
+
 <h1>Liste des Activités</h1>
 
 <!-- Bouton pour ajouter une nouvelle activité -->
@@ -19,3 +22,5 @@
 <?php else: ?>
     <p>Aucune activité enregistrée pour ce bébé.</p>
 <?php endif; ?>
+
+<?php require 'views/inc/footer.php'; ?>

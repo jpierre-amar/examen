@@ -4,8 +4,8 @@ $currentpage = 'Baby Tracker';
 require_once 'config/autoloader.php';
 require 'config/Database.php';
 require_once 'config/config.php';
-require 'views/inc/header.php';
-include 'views/inc/navbar.php';
+
+session_start();
 
 //dump($_POST, 'POST');
 //dump($_SESSION, 'SESSION');
@@ -54,5 +54,3 @@ try {
 } catch (Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
 }
-
-require 'views/inc/footer.php';

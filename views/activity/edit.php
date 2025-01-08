@@ -1,3 +1,6 @@
+<?php require 'views/inc/header.php'; ?>
+<?php include 'views/inc/navbar.php'; ?>
+
 <h1>Modifier une Activité</h1>
 <form action="/activities/update" method="POST">
     <input type="hidden" name="id" value="<?= htmlspecialchars($activity['id']) ?>">
@@ -18,3 +21,5 @@
 
     <button type="submit">Mettre à jour</button>
 </form>
+
+<?php require 'views/inc/footer.php'; ?>

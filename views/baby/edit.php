@@ -1,3 +1,6 @@
+<?php require 'views/inc/header.php'; ?>
+<?php include 'views/inc/navbar.php'; ?>
+
 <?php
 
 ?>
@@ -13,3 +16,5 @@
 
     <button type="submit">Mettre à jour</button>
 </form>
+
+<?php require 'views/inc/footer.php'; ?>

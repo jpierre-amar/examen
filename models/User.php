@@ -1,4 +1,5 @@
 <?php
+
 // Modèle User - Gère les interactions avec la table des utilisateurs dans la base de données
 class User
 {
@@ -36,11 +37,24 @@ class User
         return $stmt->fetch() !== false; // Retourne true si un résultat existe
     }
 
+    public function findAllUsersByRole($role  = null): array
+    {
+        if ($role !== null) {
+            $query = $this->db->prepare('SELECT * FROM users WHERE role = :role');
+            $query->bindParam(':role', $role, PDO::PARAM_STR);
+        } else {
+            $query = $this->db->prepare('SELECT * FROM users WHERE role IS NULL');
+        }
+
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function login(string $email, string $password): bool
     {
         // Préparer la requête pour récupérer l'utilisateur par son mail
         $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
-        $query->bindParam(':email', $email,PDO::PARAM_STR);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
         $query->execute();
 
         // Récupéré l'utilisateur
@@ -63,9 +77,15 @@ class User
         // Connexion réussie : stocker les informations utilisateur dans la session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_email'] = $user['email'];
+        $_SESSION['user_role'] = $user['role'];
 
         // Retourner true pour indiquer une connexion réussie
         $_SESSION['success'] = "Connexion réussie !";
+
+        $query = $this->db->prepare('UPDATE users SET lastLogin = NOW() WHERE id = :id');
+        $query->bindParam(':id', $user['id'], PDO::PARAM_INT);
+        $query->execute();
+
         return true;
     }
 }

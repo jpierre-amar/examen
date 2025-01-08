@@ -1,3 +1,6 @@
+<?php require 'views/inc/header.php'; ?>
+<?php include 'views/inc/navbar.php'; ?>
+
 <h1 class="text-2xl font-bold mb-4">Ajouter un Nouveau Bébé</h1>
 <form action="index.php?ctrl=Baby&action=store" method="POST" class="space-y-4">
     <div>
@@ -17,3 +20,5 @@
         Ajouter
     </button>
 </form>
+
+<?php require 'views/inc/footer.php'; ?>

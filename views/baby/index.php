@@ -1,6 +1,7 @@
 <?php
 // Fonction pour calculer l'âge
-function calculateAge($birthDate) {
+function calculateAge($birthDate)
+{
     $birthDateTime = new DateTime($birthDate);
     $currentDateTime = new DateTime();
 
