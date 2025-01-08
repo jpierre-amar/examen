@@ -13,10 +13,10 @@
 
             <!-- Liens de navigation -->
             <div class="hidden md:flex flex-1 items-center" id="navbar-links">
-                <div class="flex flex-1 space-x-4">
+                <div class="flex flex-1 space-x-4 ml-10">
                     <a href="index.php?ctrl=Home&action=index" class="block px-2 py-1 hover:text-gray-300">Accueil</a>
                     <a href="index.php?ctrl=Baby&action=index" class="block px-2 py-1 hover:text-gray-300">Mes bébés</a>
-                    <a href="/statistics" class="block px-2 py-1 hover:text-gray-300">Statistiques</a>
+                   <!-- <a href="/statistics" class="block px-2 py-1 hover:text-gray-300">Statistiques</a> -->
                     <a href="/settings" class="block px-2 py-1 hover:text-gray-300">Paramètres</a>
                 </div>
 
