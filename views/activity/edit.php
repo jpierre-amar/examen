@@ -1,14 +1,3 @@
-<?php
-// Vue pour modifier une activité existante
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier une Activité</title>
-</head>
-<body>
 <h1>Modifier une Activité</h1>
 <form action="/activities/update" method="POST">
     <input type="hidden" name="id" value="<?= htmlspecialchars($activity['id']) ?>">
@@ -29,5 +18,3 @@
 
     <button type="submit">Mettre à jour</button>
 </form>
-</body>
-</html>

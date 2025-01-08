@@ -5,9 +5,10 @@ class Activity
     private $db;
 
     // Constructeur - Injecte l'instance de connexion à la base de données
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $db = Database::getConnection();
+        $this->activityModel = new Activity($db);
     }
 
     // Récupère toutes les activités associées à un bébé
@@ -20,20 +21,20 @@ class Activity
     }
 
     // Crée une nouvelle activité
-    public function create($babyId, $type, $date, $notes = null)
+    public function create($babyId, $type, $date, $notes)
     {
-        $query = $this->db->prepare('INSERT INTO activities (baby_id, type, date, notes) VALUES (:baby_id, :type, :date, :notes)');
+        $query = $this->db->prepare('INSERT INTO activities (baby_id, activity_type_id, created_at, notes) VALUES (:baby_id, :type, :date, :notes)');
         $query->bindParam(':baby_id', $babyId, PDO::PARAM_INT);
         $query->bindParam(':type', $type, PDO::PARAM_STR);
         $query->bindParam(':date', $date, PDO::PARAM_STR);
         $query->bindParam(':notes', $notes, PDO::PARAM_STR);
-        return $query->execute();
+        $query->execute();
     }
 
     // Met à jour une activité
     public function update($id, $type, $date, $notes = null)
     {
-        $query = $this->db->prepare('UPDATE activities SET type = :type, date = :date, notes = :notes WHERE id = :id');
+        $query = $this->db->prepare('UPDATE activities SET activity_type_id = :type, created_at = :date, notes = :notes WHERE id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->bindParam(':type', $type, PDO::PARAM_STR);
         $query->bindParam(':date', $date, PDO::PARAM_STR);

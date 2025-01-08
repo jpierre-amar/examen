@@ -6,18 +6,16 @@ require 'config/Database.php';
 require_once 'config/config.php';
 require 'views/inc/header.php';
 include 'views/inc/navbar.php';
-//dump($_POST, 'POST');
-//dump($_SESSION, 'SESSION');
-$ctrl = 'HomeController'; // Valeur par défaut
 
+$ctrl = 'HomeController'; // Contrôleur par défaut
+$method = 'index'; // Méthode par défaut
 
+// Vérification du contrôleur dans l'URL
 if (isset($_GET['ctrl'])) {
-    // Assurez-vous que 'User' est passé dans l'URL
-    $ctrl = ucfirst(strtolower($_GET['ctrl'])) . 'Controller'; // Cela donnera 'UserController'
+    $ctrl = ucfirst(strtolower($_GET['ctrl'])) . 'Controller'; // Exemple : 'ActivityController'
 }
 
-$method = 'index'; // Valeur par défaut
-
+// Vérification de la méthode dans l'URL
 if (isset($_GET['action'])) {
     $method = $_GET['action'];
 }
@@ -26,33 +24,46 @@ try {
     if (class_exists($ctrl)) {
         $controller = new $ctrl();
 
-        if (!empty($_POST)) {
-            if (method_exists($controller, $method)) {
-                if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
-                    $controller->$method($_GET['id'], $_POST);
-                } else {
-                    $controller->$method($_POST);
+        // Vérifier si la méthode existe dans le contrôleur
+        if (method_exists($controller, $method)) {
+            // Si des données POST sont présentes
+            if (!empty($_POST)) {
+                // Gestion spécifique pour `ActivityController::store`
+                if ($ctrl === 'ActivityController' && $method === 'store') {
+                    $babyId = $_POST['baby_id'] ?? null;
+                    $type = $_POST['type'] ?? null;
+                    $date = $_POST['date'] ?? null;
+                    $notes = $_POST['notes'] ?? '';
 
+                    if ($babyId && $type && $date) {
+                        $controller->store($babyId, $type, $date, $notes);
+                    } else {
+                        throw new Exception("Les données nécessaires à la création de l'activité sont manquantes.");
+                    }
+                } else {
+                    // Cas général pour POST avec une méthode
+                    if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
+                        $controller->$method($_GET['id'], $_POST);
+                    } else {
+                        $controller->$method($_POST);
+                    }
                 }
-            }
-        } else {
-            if (method_exists($controller, $method)) {
+            } else {
+                // Appeler la méthode sans POST
                 if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
                     $controller->$method($_GET['id']);
-                } else
-                {
+                } else {
                     $controller->$method();
                 }
             }
+        } else {
+            throw new Exception("La méthode '$method' n'existe pas dans le contrôleur '$ctrl'.");
         }
     } else {
         throw new Exception("Le contrôleur '$ctrl' n'existe pas.");
     }
-    if (isset($_GET['action']) && $_GET['action'] == 'validateUser') {
-        include 'index.php';
-    }
 } catch (Exception $e) {
-    throw new Exception('Erreur : ' . $e->getMessage());
+    echo '<div class="error">Erreur : ' . htmlspecialchars($e->getMessage()) . '</div>';
 }
 
 require 'views/inc/footer.php';

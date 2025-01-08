@@ -1,18 +1,6 @@
-<?php
-// Vue pour ajouter une nouvelle activité pour un bébé
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter une Activité</title>
-</head>
-<body>
-<h1>Ajouter une Activité</h1>
-<form action="/activities/store" method="POST">
-    <input type="hidden" name="baby_id" value="<?= htmlspecialchars($baby['id']) ?>">
 
+<h1>Ajouter une Activité</h1>
+<form action="index.php?ctrl=Activity&action=store" method="GET">
     <label for="type">Type d'Activité:</label>
     <select name="type" id="type" required>
         <option value="meal">Repas</option>
@@ -28,5 +16,3 @@
 
     <button type="submit">Ajouter</button>
 </form>
-</body>
-</html>

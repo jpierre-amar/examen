@@ -33,8 +33,11 @@ class ActivityController
     // Enregistre une nouvelle activité
     public function store($babyId, $type, $date, $notes)
     {
+        $babyId = $_GET['baby_id'];
         $this->activityModel->create($babyId, $type, $date, $notes);
-        header('Location: /activities/' . $babyId);
+
+        header('Location: index.php?ctrl=Activity&action=index&baby_id=' . $babyId);
+        exit;
     }
 
     // Affiche le formulaire pour modifier une activité
