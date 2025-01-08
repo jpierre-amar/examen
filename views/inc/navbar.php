@@ -12,18 +12,19 @@
             </button>
 
             <!-- Liens de navigation -->
-            <div class="hidden flex-col md:flex md:flex-row md:space-x-12 md:items-center w-full md:w-auto" id="navbar-links">
-                <a href="index.php?ctrl=Home&action=index" class="block px-4 py-2 hover:text-gray-300 text-center md:text-left">Accueil</a>
-                <a href="index.php?ctrl=Baby&action=index" class="block px-4 py-2 hover:text-gray-300 text-center md:text-left">Mes bébés</a>
-                <a href="/statistics" class="block px-4 py-2 hover:text-gray-300 text-center md:text-left">Statistiques</a>
-                <a href="/settings" class="block px-4 py-2 hover:text-gray-300 text-center md:text-left">Paramètres</a>
+            <div class="hidden md:flex flex-1 items-center" id="navbar-links">
+                <div class="flex flex-1 space-x-4">
+                    <a href="index.php?ctrl=Home&action=index" class="block px-2 py-1 hover:text-gray-300">Accueil</a>
+                    <a href="index.php?ctrl=Baby&action=index" class="block px-2 py-1 hover:text-gray-300">Mes bébés</a>
+                    <a href="/statistics" class="block px-2 py-1 hover:text-gray-300">Statistiques</a>
+                    <a href="/settings" class="block px-2 py-1 hover:text-gray-300">Paramètres</a>
+                </div>
 
-                <!-- Bouton à droite -->
-                <div class="mt-4 md:mt-0 md:ml-auto">
+                <div class="ml-auto">
                     <?php if (!isset($_SESSION['user_email'])): ?>
-                        <a href="index.php?ctrl=Auth&action=showLoginForm" class="block px-4 py-2 hover:text-gray-300 text-center md:text-left">Se connecter / S'inscrire</a>
+                        <a href="index.php?ctrl=Auth&action=showLoginForm" class="block px-2 py-1 hover:text-gray-300">Se connecter / S'inscrire</a>
                     <?php else: ?>
-                        <a href="index.php?ctrl=Auth&action=logout" class="block px-4 py-2 hover:text-gray-300 text-center md:text-left">Se déconnecter</a>
+                        <a href="index.php?ctrl=Auth&action=logout" class="block px-2 py-1 hover:text-gray-300">Se déconnecter</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -37,8 +38,10 @@
         const navbarLinks = document.getElementById('navbar-links');
 
         toggle.addEventListener('click', function () {
-            navbarLinks.classList.toggle('hidden'); // Cache ou affiche le menu
-            navbarLinks.classList.toggle('flex');  // Active flex pour l'affichage
+            navbarLinks.classList.toggle('hidden');
+            navbarLinks.classList.toggle('flex');
+            navbarLinks.classList.toggle('flex-col');
+            navbarLinks.classList.toggle('space-y-2');
         });
     });
 </script>

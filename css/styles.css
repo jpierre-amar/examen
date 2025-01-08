@@ -157,3 +157,26 @@ footer {
 footer p {
     color: #666;
 }
+
+/* Cache le menu par défaut sur les petits écrans */
+#navbar-links {
+    display: none;
+}
+
+/* Affiche le menu horizontal à partir des écrans moyens */
+@media (min-width: 768px) {
+    #navbar-links {
+        display: flex;
+    }
+}
+
+/* Affiche le menu verticalement sur les petits écrans */
+#navbar-links.active {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#bg-nav {
+    background-color: var(--primary-color);
+}
