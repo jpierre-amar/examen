@@ -23,29 +23,33 @@
         </a>
 
         <?php if (!empty($babies)): ?>
-            <div class="p-6 border-2 border-gray-300 rounded-lg bg-gray-50 shadow-lg">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <?php foreach ($babies as $baby): ?>
-                        <div class="relative p-4 bg-white border border-gray-200 rounded-lg shadow-md">
-                            <!-- Lien pour les activités (entoure toute la carte) -->
-                            <a href="index.php?ctrl=Activity&action=index&id=<?= ($baby['id']) ?>"
-                               class="absolute inset-0 z-10"></a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <?php foreach ($babies as $baby): ?>
+                    <!-- Card -->
+                    <div class="p-6 bg-white border border-gray-300 rounded-xl shadow-lg hover:shadow-2xl transform transition-all duration-300">
+                        <!-- Nom -->
+                        <h2 class="text-xl font-bold text-gray-800 mb-3"><?= htmlspecialchars($baby['name']) ?></h2>
 
-                            <!-- Lien pour l'édition -->
-                            <a href="index.php?ctrl=Baby&action=edit&id=<?= ($baby['id']) ?>"
-                               class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 z-20">
-                                <p>Editer</p>
+                        <!-- Date de naissance et âge -->
+                        <p class="text-gray-600">
+                            Date de naissance : <?= htmlspecialchars($baby['birth_date']) ?>
+                            <br>
+                            <span class="italic text-sm">(<?= Baby::calculateAge($baby['birth_date']) ?>)</span>
+                        </p>
+
+                        <!-- Boutons -->
+                        <div class="mt-4 flex justify-between">
+                            <a href="index.php?ctrl=Activity&action=create&baby_id=<?= ($baby['id']) ?>"
+                               class="px-4 py-2 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                Ajouter une activité
                             </a>
-
-                            <!-- Contenu de la carte -->
-                            <h2 class="text-lg font-bold text-gray-700 mb-2"><?= htmlspecialchars($baby['name']) ?></h2>
-                            <p class="text-gray-500">
-                                Date de naissance : <?= htmlspecialchars($baby['birth_date']) ?>
-                                (<?= Baby::calculateAge($baby['birth_date']) ?>)
-                            </p>
+                            <a href="index.php?ctrl=Baby&action=edit&id=<?= ($baby['id']) ?>"
+                               class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                                Éditer
+                            </a>
                         </div>
-                    <?php endforeach; ?>
-                </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         <?php else: ?>
             <p class="text-gray-500 text-center mt-6">Aucun bébé enregistré pour le moment.</p>

@@ -42,6 +42,17 @@ class Baby
         $query->bindParam(':taille', $data['taille'], PDO::PARAM_STR);
         $query->bindParam(':date_mesure', $data['date_mesure'], PDO::PARAM_STR);
         $query->bindParam(':baby_id', $data['baby_id'], PDO::PARAM_INT);
+        $query->execute();
+
+        $query = $this->db->prepare('
+        UPDATE babies
+        SET name = :name, birth_date = :birth_date
+        WHERE id = :id
+    ');
+        $query->bindParam(':name', $data['name'], PDO::PARAM_STR);
+        $query->bindParam(':birth_date', $data['birth_date'], PDO::PARAM_STR);
+        $query->bindParam(':id', $data['id'], PDO::PARAM_INT);
+
         return $query->execute();
     }
 
