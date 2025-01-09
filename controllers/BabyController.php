@@ -4,12 +4,14 @@ require_once 'config/Database.php';
 class BabyController
 {
     private $babyModel;
+    private $mesureModel;
 
     public function __construct()
     {
         // Initialisation de la connexion à la base de données
         $db = Database::getConnection();
         $this->babyModel = new Baby($db);
+        $this->mesureModel = new Mesure($db);
     }
     // Affiche la liste des bébés
     public function index()
@@ -52,24 +54,42 @@ class BabyController
     // Affiche le formulaire pour modifier un bébé
     public function edit($id)
     {
-        // Récupération du bébé par son ID
         $baby = $this->babyModel->findById($id);
 
+        // Vérifier si le bébé existe
         if (!$baby) {
-            // Si aucun bébé n'est trouvé, rediriger avec un message d'erreur
             $_SESSION['error'] = "Bébé introuvable.";
-            header('Location: index.php?ctrl=Baby&action=index&id=' . $id);
+            header('Location: index.php?ctrl=Baby&action=index');
             exit;
         }
 
-        // Inclure la vue avec les données du bébé
+        // Récupérer les mesures associées
+        $mesures = $this->mesureModel->findByBabyId($id);
+
         include 'views/baby/edit.php';
     }
 
     // Met à jour un bébé existant
-    public function update(): void
+    public function update()
     {
-        $this->babyModel->update($_POST);
+        $data = $_POST;
+
+        // Mise à jour des informations du bébé
+        $this->babyModel->update($data);
+
+        // Mise à jour des mesures
+        $mesures = [
+            'baby_id' => $data['id'],
+            'genre' => (int)$data['genre'],
+            'poids' => $data['poids'],
+            'taille' => $data['taille'],
+            'date_mesure' => $data['date_mesure'],
+        ];
+
+        $this->mesureModel->update($mesures);
+
+        $_SESSION['success'] = "Informations mises à jour avec succès.";
         header('Location: index.php?ctrl=Baby&action=index');
+        exit;
     }
 }

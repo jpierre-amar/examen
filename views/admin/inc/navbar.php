@@ -16,8 +16,8 @@
             <div class="hidden md:flex flex-1 items-center" id="navbar-links">
                 <div class="flex flex-1 space-x-4 ml-10">
                     <a href="index.php?ctrl=AdminHome&action=index" class="block px-2 py-1 hover:text-gray-300">Accueil</a>
-                    <a href="index.php?ctrl=AdminUsers&action=index" class="block px-2 py-1 hover:text-gray-300">Utilisateurs</a>
-                    <a href="index.php?ctrl=AdminUsers&action=index&role=admin" class="block px-2 py-1 hover:text-gray-300">Administrateurs</a>
+                    <a href="index.php?ctrl=AdminUsers&action=index" class="block px-2 py-1 hover:text-gray-300">Liste des Utilisateurs</a>
+                    <a href="index.php?ctrl=AdminUsers&action=index&role=admin" class="block px-2 py-1 hover:text-gray-300">Liste des Administrateurs</a>
                     <a href="index.php?ctrl=AdminActivityTypes&action=add" class="block px-2 py-1 hover:text-gray-300">Ajouter un Type d'Activité</a>
                 </div>
 

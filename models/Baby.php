@@ -30,12 +30,18 @@ class Baby
     }
 
     // Met à jour les informations d'un bébé
-    public function update($data)
+    public function update(array $data)
     {
-        $query = $this->db->prepare('UPDATE babies SET name = :name, birth_date = :birth_date WHERE id = :id');
-        $query->bindParam(':id', $data['id'], PDO::PARAM_INT);
-        $query->bindParam(':name', $data['name'], PDO::PARAM_STR);
-        $query->bindParam(':birth_date', $data['birth_date'], PDO::PARAM_STR);
+        $query = $this->db->prepare('
+        UPDATE mesures 
+        SET genre = :genre, poids = :poids, taille = :taille, date_mesure = :date_mesure 
+        WHERE baby_id = :baby_id
+    ');
+        $query->bindParam(':genre', $data['genre'], PDO::PARAM_INT);
+        $query->bindParam(':poids', $data['poids'], PDO::PARAM_STR);
+        $query->bindParam(':taille', $data['taille'], PDO::PARAM_STR);
+        $query->bindParam(':date_mesure', $data['date_mesure'], PDO::PARAM_STR);
+        $query->bindParam(':baby_id', $data['baby_id'], PDO::PARAM_INT);
         return $query->execute();
     }
 
@@ -45,5 +51,21 @@ class Baby
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function calculateAge($birthDate)
+    {
+        $birthDateTime = new DateTime($birthDate);
+        $currentDateTime = new DateTime();
+
+        $interval = $currentDateTime->diff($birthDateTime);
+        $years = $interval->y;
+        $months = $interval->m;
+
+        if ($years > 0) {
+            return "$years an(s) et $months mois";
+        } else {
+            return "$months mois";
+        }
     }
 }
