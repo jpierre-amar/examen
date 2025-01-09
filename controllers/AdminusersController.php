@@ -24,12 +24,24 @@ class AdminusersController
 
     public function index()
     {
-        // security to avoid direct access
+        // Sécurité pour l'accès
         $this->requireSessionAdmin();
 
         $role = isset($_GET['role']) ? $_GET['role'] : null;
         $users = $this->userModel->findAllUsersByRole($role);
 
         include 'views/admin/users/index.php';
+    }
+
+   public function edit() {
+
+   }
+
+    public function delete($id)
+    {
+        $this->requireSessionAdmin();
+        $users = $this->userModel->delete($id);
+        header('Location: index.php?ctrl=Adminusers&action=index');
+        exit;
     }
 }

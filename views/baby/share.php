@@ -1,14 +1,6 @@
 <?php
 // Vue pour partager un bébé avec d'autres utilisateurs
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partager un Bébé</title>
-</head>
-<body>
 <h1>Partager un Bébé</h1>
 <form action="/babies/share" method="POST">
     <input type="hidden" name="baby_id" value="<?= htmlspecialchars($baby['id']) ?>">
@@ -24,5 +16,3 @@
 
     <button type="submit">Partager</button>
 </form>
-</body>
-</html>

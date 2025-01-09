@@ -1,4 +1,7 @@
+<?php require 'views/inc/header.php'; ?>
+<?php include 'views/inc/navbar.php'; ?>
 <?php
+
 // Fonction pour calculer l'âge
 function calculateAge($birthDate)
 {
@@ -53,3 +56,4 @@ function calculateAge($birthDate)
         <p class="text-gray-500 text-center mt-6">Aucun bébé enregistré pour le moment.</p>
     <?php endif; ?>
 </div>
+<?php include 'views/inc/footer.php'; ?>

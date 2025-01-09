@@ -1,5 +1,5 @@
-<?php
-?>
+<?php require 'views/inc/header.php'; ?>
+<?php include 'views/inc/navbar.php'; ?>
 <main class="flex items-center my-16 justify-center bg-gray-100">
     <div class="container max-w-md p-6 bg-white shadow-lg border border-gray-300 rounded-lg">
         <h1 class="text-3xl font-bold text-center mb-4">Connexion</h1>
@@ -27,3 +27,4 @@
         </p>
     </div>
 </main>
+<?php include 'views/inc/footer.php'; ?>

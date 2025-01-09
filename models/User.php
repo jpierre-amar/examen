@@ -88,4 +88,11 @@ class User
 
         return true;
     }
+
+    public function delete(int $id): bool
+    {
+        $query = $this->db->prepare('DELETE FROM users WHERE id = :id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        return $query->execute();
+    }
 }
