@@ -47,4 +47,5 @@ class Activity
         $query->bindParam(':notes', $notes, PDO::PARAM_STR);
         return $query->execute();
     }
+
 }

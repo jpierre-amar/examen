@@ -1,14 +1,7 @@
 <?php
 
-class AdminhomeController
+class AdminhomeController extends BaseAdminController
 {
-    private function requireSessionAdmin(): void
-    {
-        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-            header('Location: index.php?ctrl=Home&action=index');
-            exit;
-        }
-    }
 
     public function index()
     {
