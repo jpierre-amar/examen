@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Baby.php';
+require_once 'models/Mesure.php';
 require_once 'config/Database.php';
 class BabyController
 {
@@ -74,21 +75,52 @@ class BabyController
     {
         $data = $_POST;
 
-        // Mise à jour des informations du bébé
-        $this->babyModel->update($data);
+        // Mise à jour des informations générales du bébé
+        $this->babyModel->update([
+            'id' => $data['id'],
+            'name' => $data['name'],
+            'birth_date' => $data['birth_date']
+        ]);
 
-        // Mise à jour des mesures
-        $mesures = [
-            'baby_id' => $data['id'],
-            'genre' => (int)$data['genre'],
-            'poids' => $data['poids'],
-            'taille' => $data['taille'],
-            'date_mesure' => $data['date_mesure'],
-        ];
+        // Mise à jour ou création des mesures
+        $existingMesure = $this->mesureModel->findByBabyId($data['id']);
+        if ($existingMesure['date_mesure']) {
+            $this->mesureModel->update([
+                'baby_id' => $data['id'],
+                'genre' => (int)$data['genre'],
+                'poids' => $data['poids'],
+                'taille' => $data['taille'],
+                'date_mesure' => $data['date_mesure']
+            ]);
+        } else {
+            $this->mesureModel->create([
+                'baby_id' => $data['id'],
+                'genre' => (int)$data['genre'],
+                'poids' => $data['poids'],
+                'taille' => $data['taille'],
+                'date_mesure' => $data['date_mesure']
+            ]);
+        }
 
-        $this->mesureModel->update($mesures);
+        $_SESSION['success'] = "Les informations ont été mises à jour avec succès.";
+        header('Location: index.php?ctrl=Baby&action=index');
+        exit;
+    }
 
-        $_SESSION['success'] = "Informations mises à jour avec succès.";
+    public function delete($id)
+    {
+        // Vérifie que le bébé existe
+        $baby = $this->babyModel->findById($id);
+        if (!$baby) {
+            $_SESSION['error'] = "Bébé introuvable.";
+            header('Location: index.php?ctrl=Baby&action=index');
+            exit;
+        }
+
+        // Supprime le bébé
+        $this->babyModel->delete($id);
+
+        $_SESSION['success'] = "Bébé supprimé avec succès.";
         header('Location: index.php?ctrl=Baby&action=index');
         exit;
     }

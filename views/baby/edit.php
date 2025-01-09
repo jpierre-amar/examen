@@ -1,16 +1,6 @@
 <?php require 'views/inc/header.php'; ?>
 <?php include 'views/inc/navbar.php'; ?>
 
-<?php
-// Fournir des valeurs par défaut si $mesures est invalide
-$mesures = is_array($mesures) ? $mesures : [
-    'genre' => 0, // Par défaut : garçon
-    'poids' => '',
-    'taille' => '',
-    'date_mesure' => '',
-];
-?>
-
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Modifier les Informations du Bébé</h1>
 
@@ -80,7 +70,7 @@ $mesures = is_array($mesures) ? $mesures : [
             </fieldset>
 
             <!-- Boutons -->
-            <div class="flex justify-end space-x-4">
+            <div class="flex justify-between">
                 <a href="index.php?ctrl=Baby&action=index"
                    class="px-4 py-2 bg-gray-500 text-white rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400">
                     Annuler
@@ -89,6 +79,14 @@ $mesures = is_array($mesures) ? $mesures : [
                         class="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
                     Mettre à jour
                 </button>
+            </div>
+
+            <!-- Bouton Supprimer -->
+            <div class="mt-4 text-right">
+                <a href="index.php?ctrl=Baby&action=delete&id=<?= htmlspecialchars($baby['id']) ?>"
+                   class="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+                    Supprimer
+                </a>
             </div>
         </form>
     </div>

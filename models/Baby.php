@@ -68,4 +68,11 @@ class Baby
             return "$months mois";
         }
     }
+
+    public function delete($id)
+    {
+        $query = $this->db->prepare('DELETE FROM babies WHERE id = :id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        return $query->execute();
+    }
 }
