@@ -95,4 +95,33 @@ class User
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         return $query->execute();
     }
+
+    public function findById(int $id): ?array
+    {
+        $query = $this->db->prepare('SELECT * FROM users WHERE id = :id');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $result ?: null; // Retourne null si aucune donnée n'est trouvée
+    }
+
+    public function update(int $id, string $lastName, string $firstName, string $phone): bool
+    {
+        $query = $this->db->prepare('
+        UPDATE users 
+        SET lastname = :last_name, 
+            firstname = :first_name, 
+            phone = :phone 
+        WHERE id = :id
+    ');
+
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->bindParam(':last_name', $lastName, PDO::PARAM_STR);
+        $query->bindParam(':first_name', $firstName, PDO::PARAM_STR);
+        $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+
+        return $query->execute();
+    }
 }

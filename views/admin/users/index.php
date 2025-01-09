@@ -10,7 +10,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <?php foreach ($users as $user): ?>
                     <div class="relative bg-white border border-gray-200 rounded-lg shadow-md p-6">
-                        <!-- Section Titre et Action -->
+                        <!-- Section Titre et Actions -->
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-xl font-semibold text-gray-700">
                                 <?= htmlspecialchars($user['email']) ?>
@@ -18,6 +18,15 @@
                         </div>
 
                         <!-- Détails de l'utilisateur -->
+                        <p class="text-gray-500 mb-2">
+                            <strong>Nom :</strong> <?= htmlspecialchars($user['lastname'] ?? 'Non disponible') ?>
+                        </p>
+                        <p class="text-gray-500 mb-2">
+                            <strong>Prénom :</strong> <?= htmlspecialchars($user['firstname'] ?? 'Non disponible') ?>
+                        </p>
+                        <p class="text-gray-500 mb-2">
+                            <strong>Téléphone :</strong> <?= htmlspecialchars($user['phone'] ?? 'Non disponible') ?>
+                        </p>
                         <p class="text-gray-500 mb-2">
                             Dernière connexion : <?= htmlspecialchars($user['lastLogin'] ?? 'Non disponible') ?>
                         </p>
