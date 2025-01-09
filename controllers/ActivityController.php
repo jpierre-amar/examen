@@ -4,16 +4,17 @@
 class ActivityController
 {
     private $activityModel;
+    private $activityType;
 
     public function __construct()
     {
         $this->activityModel = new Activity();
+        $this->activityType = new ActivityType();
     }
 
     // Affiche la liste des activités
     public function index($babyId)
     {
-        dump($babyId, 'babyId');
         if (empty($babyId)) {
             $_SESSION['error'] = "ID de bébé invalide.";
             header('Location: index.php?ctrl=Baby&action=index');
@@ -27,7 +28,10 @@ class ActivityController
     // Affiche le formulaire pour ajouter une activité
     public function create()
     {
+        // Récupérer les types d'activités
+        $activityTypes = $this->activityType->findAll();
 
+        // Inclure la vue en passant les données
         include 'views/activity/create.php';
     }
 

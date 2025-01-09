@@ -17,4 +17,12 @@ class ActivityType
 
         return $query->execute();
     }
+
+    public function findAll()
+    {
+        $query = $this->db->prepare('SELECT * FROM activity_types');
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

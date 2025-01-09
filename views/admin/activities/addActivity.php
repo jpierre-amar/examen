@@ -4,6 +4,14 @@
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Ajouter un Type d'Activité</h1>
 
+        <!-- Message de succès -->
+        <?php if (!empty($_SESSION['success'])): ?>
+            <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-md shadow-md">
+                <?= htmlspecialchars($_SESSION['success']) ?>
+            </div>
+            <?php unset($_SESSION['success']); // Supprimer le message après affichage ?>
+        <?php endif; ?>
+
         <form action="index.php?ctrl=AdminActivityTypes&action=store" method="POST" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
             <!-- Champ Nom -->
             <div class="mb-4">

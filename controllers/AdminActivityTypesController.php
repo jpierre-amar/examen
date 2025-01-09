@@ -12,7 +12,7 @@ class AdminActivityTypesController extends BaseAdminController
     public function add()
     {
         $this->requireSessionAdmin();
-        include 'views/admin/activity_types/add.php';
+        include 'views/admin/activities/addActivity.php';
     }
 
     public function store()
@@ -32,7 +32,7 @@ class AdminActivityTypesController extends BaseAdminController
 
         if ($success) {
             $_SESSION['success'] = "Type d'activité ajouté avec succès.";
-            header('Location: index.php?ctrl=AdminActivityTypes&action=index');
+            header('Location: index.php?ctrl=AdminActivityTypes&action=add');
         } else {
             $_SESSION['error'] = "Une erreur est survenue lors de l'ajout.";
             header('Location: index.php?ctrl=AdminActivityTypes&action=add');
