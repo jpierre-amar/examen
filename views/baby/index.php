@@ -19,7 +19,7 @@
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Liste des Bébés</h1>
         <a href="index.php?ctrl=Baby&action=create"
            class="inline-block mb-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-            Créer un bébé
+            Ajouter un nouveau bébé
         </a>
 
         <?php if (!empty($babies)): ?>
