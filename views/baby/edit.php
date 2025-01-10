@@ -70,21 +70,17 @@
             </fieldset>
 
             <!-- Boutons -->
-            <div class="flex justify-between">
+            <div class="flex justify-between items-center mt-6 space-x-4">
                 <a href="index.php?ctrl=Baby&action=index"
-                   class="px-4 py-2 bg-gray-500 text-white rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                   class="w-1/3 px-4 py-2 bg-gray-500 text-white rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 text-center">
                     Annuler
                 </a>
                 <button type="submit"
-                        class="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        class="w-1/3 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 text-center">
                     Mettre à jour
                 </button>
-            </div>
-
-            <!-- Bouton Supprimer -->
-            <div class="mt-4 text-right">
                 <a href="index.php?ctrl=Baby&action=delete&id=<?= htmlspecialchars($baby['id']) ?>"
-                   class="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+                   class="w-1/3 px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 text-center">
                     Supprimer
                 </a>
             </div>
