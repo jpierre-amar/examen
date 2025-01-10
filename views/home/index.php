@@ -5,7 +5,7 @@
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-md text-center">
             <!-- Image -->
             <div class="mb-6">
-                <img src="public/images/Charlie_3.png" alt="Charlie" class="w-48 h-auto mx-auto rounded-full shadow-md">
+                <img src="public/images/Charlie_3.png" alt="Charlie" class="w-48 h-auto mx-auto rounded-full shadow-md" style="filter: brightness(1.2);">
             </div>
 
             <!-- Titre -->
