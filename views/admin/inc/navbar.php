@@ -12,7 +12,6 @@
             </button>
 
             <!-- Liens de navigation -->
-            <!-- Liens de navigation -->
             <div class="hidden md:flex flex-1 items-center" id="navbar-links">
                 <div class="flex flex-1 space-x-4 ml-10">
                     <a href="index.php?ctrl=AdminHome&action=index" class="block px-2 py-1 hover:text-gray-300">Accueil</a>
@@ -30,16 +29,4 @@
     </div>
 </nav>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggle = document.getElementById('navbar-toggle');
-        const navbarLinks = document.getElementById('navbar-links');
 
-        toggle.addEventListener('click', function () {
-            navbarLinks.classList.toggle('hidden');
-            navbarLinks.classList.toggle('flex');
-            navbarLinks.classList.toggle('flex-col');
-            navbarLinks.classList.toggle('space-y-2');
-        });
-    });
-</script>

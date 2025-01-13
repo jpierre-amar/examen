@@ -9,5 +9,4 @@
     <title>Baby Tracker</title>
 </head>
 <body>
-<header>
-</header>
+
